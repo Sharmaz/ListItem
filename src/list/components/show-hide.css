@@ -1,0 +1,10 @@
+.List-action button {
+  height: inherit;
+  border: none;
+  background: transparent;
+  outline: 0;
+  width: 100%;
+  box-sizing: none;
+  cursor: pointer;
+  padding: 0;
+}

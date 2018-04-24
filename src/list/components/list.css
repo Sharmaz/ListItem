@@ -7,6 +7,10 @@
   font-family: 'Rubik', sans-serif;
 }
 
+.List-default {
+  height: 200px;
+}
+
 .List-title {
   font-size: 2rem;
   text-align: center;
@@ -15,3 +19,16 @@
   margin: 0;
 }
 
+.List-action {
+  background-color: #F62E5C;
+  text-align: center;
+  height: 30.2px;
+  grid-row-end: 999999;
+}
+
+.List-action-icon {
+  padding-top: 10px;
+}
+.List-add-icon {
+  padding-top: 5px;
+}

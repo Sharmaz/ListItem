@@ -1,3 +1,4 @@
+// Dependencias
 import React from 'react';
 
 const Icon = (props) => {

@@ -1,6 +1,7 @@
 // Dependencias
 import React from 'react';
-import List from '../../list/components/list';
+import ListContainer from '../../list/containers/list';
+
 import './lists.css';
 
 // Creamos un componente mostrar las multiples listas
@@ -14,7 +15,7 @@ const Lists = (props) => (
          * Tambien le pasamos una key para que React identifique los cambios
          * de los elementos de un array
          */ 
-        return <List {...item} key={item._id} />;
+        return <ListContainer {...item} key={item._id} />;
       })
     }
   </div>
