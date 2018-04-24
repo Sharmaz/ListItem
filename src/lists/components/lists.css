@@ -1,0 +1,25 @@
+.Lists {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 300px);
+  grid-gap: 16px;
+  justify-content: center;
+}
+
+.Item-0 {
+  grid-row-end: span 1;
+}
+.Item-1 {
+  grid-row-end: span 1;
+}
+.Item-2 {
+  grid-row-end: span 2;
+}
+.Item-3 {
+  grid-row-end: span 3;
+}
+.Item-4 {
+  grid-row-end: span 4;
+}
+.Item-5 {
+  grid-row-end: span 5;
+}

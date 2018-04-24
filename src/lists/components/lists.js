@@ -1,10 +1,11 @@
 // Dependencias
 import React from 'react';
 import List from '../../list/components/list';
+import './lists.css';
 
 // Creamos un componente mostrar las multiples listas
 const Lists = (props) => (
-  <div>
+  <div className="Lists">
     {
       // Iteramos en el arreglo de listas
       props.lists.map((item) => {

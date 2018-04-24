@@ -1,10 +1,11 @@
 // Dependencias
 import React from 'react';
+import './item.css';
 
 // Creamos el componente funcional Item en un arrow function rendereando las props
 const Item = (props) => (
-  <div className="item">
-    <span>{props.name}</span>
+  <div className="List-item">
+    <h3>{props.name}</h3>
   </div>
 );
 

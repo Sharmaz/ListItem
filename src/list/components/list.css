@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+
+.List {
+  border: 1px solid #F62E5C;
+  color: #4A4A4A;
+  display: grid;
+  font-family: 'Rubik', sans-serif;
+}
+
+.List-title {
+  font-size: 2rem;
+  text-align: center;
+  border-bottom: 1px solid #F62E5C;
+  padding: 0;
+  margin: 0;
+}
+
