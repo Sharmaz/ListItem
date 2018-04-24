@@ -1,0 +1,38 @@
+{
+  "lists": [
+    {
+      "_id": 1,
+      "name": "Backend",
+      "items": [
+      ]
+    },
+    {
+      "_id": 2,
+      "name": "DevOps",
+      "items": [
+        {
+          "_id": 1,
+          "name": "Inicialización del server"
+        },
+        {
+          "_id": 2,
+          "name": "Instalación de paquetes"
+        },
+        {
+          "_id": 3,
+          "name": "Deployment"
+        }
+      ]
+    },
+    {
+      "_id": 3,
+      "name": "Diseño",
+      "items": [
+        {
+            "_id": 1,
+            "name": "Dibujar Wireframes"
+        }
+      ]
+    }
+  ]
+}
