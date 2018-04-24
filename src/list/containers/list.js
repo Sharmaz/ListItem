@@ -7,10 +7,12 @@ class ListContainer extends Component {
   /**
    * Vamos a utilizar propiedades para mostrar un tipo de lista Default y Normal
    * Tambien vamos a mostrar u ocultar los items de la lista con hideShow
+   * Con listOptions se mostrará u ocultará las opciones de editar y eliminar lista
    */
   state = {
     defaultList: true,
-    hideShow: false
+    hideShow: false,
+    listOptions: false
   }
 
   hideShowList = (event) => {
@@ -19,6 +21,16 @@ class ListContainer extends Component {
       hideShow: !this.state.hideShow,
       defaultList: !this.state.defaultList
     });
+  }
+
+  hideShowListOptions = (event) => {
+    /**
+     * Al click, cambiaremos el estado de listOptions de false a true o true a false
+     * Asi mostraremos o no los botones para editar y eliminar en el DefaultList
+     */
+    this.setState({
+      listOptions: !this.state.listOptions
+    })
   }
 
   render() {
@@ -31,6 +43,8 @@ class ListContainer extends Component {
               name={this.props.name}
               hideShow={this.state.hideShow}
               hideShowList={this.hideShowList}
+              listOptions={this.state.listOptions}
+              hideShowListOptions={this.hideShowListOptions}
             />
           :
           // De lo contrario rendereamos una lista normal y le pasamos propiedades

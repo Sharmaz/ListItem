@@ -12,6 +12,7 @@
 }
 
 .List-title {
+  cursor: pointer;
   font-size: 2rem;
   text-align: center;
   border-bottom: 1px solid #F62E5C;

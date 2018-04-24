@@ -2,6 +2,7 @@
 import React from 'react';
 import ShowHide from './show-hide';
 import ListHeader from './list-header';
+import ListOptions from './list-options';
 
 import './list.css';
 
@@ -11,7 +12,15 @@ import './list.css';
  */
 const DefaultList = (props) => (
   <div className="List List-default">
-    <ListHeader name={props.name}/>
+    <ListHeader 
+      name={props.name}
+      hideShowListOptions={props.hideShowListOptions}
+    />
+    {
+      // Si listOptions es true mostramos el componente ListOptions
+      props.listOptions &&
+      <ListOptions />
+    }
     <ShowHide
       handleClick={props.hideShowList}
       hideShow={props.hideShow}

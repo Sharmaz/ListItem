@@ -1,0 +1,9 @@
+.Item-options button {
+  height: inherit;
+  border: none;
+  background: transparent;
+  outline: 0;
+  box-sizing: none;
+  cursor: pointer;
+  margin: 5px;
+}

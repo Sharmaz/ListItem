@@ -1,0 +1,17 @@
+.List-options {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  align-content: flex-end;
+}
+
+.List-options button {
+  height: inherit;
+  border: none;
+  background: transparent;
+  outline: 0;
+  width: 25%;
+  box-sizing: none;
+  cursor: pointer;
+  padding-top: 100%;
+}

@@ -1,11 +1,20 @@
 // Dependencias
 import React from 'react';
+import ItemOptions from './items-options';
+
 import './item.css';
 
-// Creamos el componente funcional Item en un arrow function rendereando las props
+/**
+ * Rendereamos el titulo del item
+ * Le pasamos como props al h3 la función showHideItemOptions a ejecutarse al click
+ */
 const Item = (props) => (
   <div className="List-item">
-    <h3>{props.name}</h3>
+    <h3 onClick={props.showHideItemOptions}>{props.name}</h3>
+    {
+      props.itemOptions &&
+      <ItemOptions />
+    }
   </div>
 );
 
