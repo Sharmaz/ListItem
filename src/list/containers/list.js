@@ -10,9 +10,34 @@ class ListContainer extends Component {
    * Con listOptions se mostrará u ocultará las opciones de editar y eliminar lista
    */
   state = {
+    addNewItem: false,
     defaultList: true,
     hideShow: false,
     listOptions: false
+  }
+
+  addItem = (event) => {
+    // Cuando ocurra el evento vamos a mostrar el formulario para agregar item
+    this.setState({
+      addNewItem: !this.state.addNewItem,
+      listOptions: false
+    });
+  }
+
+  addItemRemove = (event) => {
+    // Vamos a remover el formulario cuando hagamos submit
+    this.setState({
+      addNewItem: false
+    })
+  }
+
+  addItemOnKeyHandler = (event) => {
+    // Removeremos el formulario si se presionar la tecla ESC
+    if (event.keyCode === 27) {
+      this.setState({
+        addNewItem: !this.state.addNewItem,
+      })
+    }
   }
 
   hideShowList = (event) => {
@@ -41,10 +66,15 @@ class ListContainer extends Component {
           this.state.defaultList?
             <DefaultList
               name={this.props.name}
+              items={this.props.items}
               hideShow={this.state.hideShow}
               hideShowList={this.hideShowList}
               listOptions={this.state.listOptions}
               hideShowListOptions={this.hideShowListOptions}
+              addNewItem={this.state.addNewItem}
+              addItem={this.addItem}
+              addItemRemove={this.addItemRemove}
+              addItemOnKeyHandler={this.addItemOnKeyHandler}
             />
           :
           // De lo contrario rendereamos una lista normal y le pasamos propiedades

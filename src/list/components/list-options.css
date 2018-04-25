@@ -5,7 +5,18 @@
   align-content: flex-end;
 }
 
-.List-options button {
+.List-options .editList-button, .deleteList-button {
+  height: inherit;
+  border: none;
+  background: transparent;
+  outline: 0;
+  width: 25%;
+  box-sizing: none;
+  cursor: pointer;
+  padding-top: 30px;
+}
+
+.List-options .addItem-button {
   height: inherit;
   border: none;
   background: transparent;
