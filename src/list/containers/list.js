@@ -13,7 +13,8 @@ class ListContainer extends Component {
     addNewItem: false,
     defaultList: true,
     hideShow: false,
-    listOptions: false
+    listOptions: false,
+    editList: false
   }
 
   addItem = (event) => {
@@ -28,16 +29,45 @@ class ListContainer extends Component {
     // Vamos a remover el formulario cuando hagamos submit
     this.setState({
       addNewItem: false
-    })
+    });
   }
 
   addItemOnKeyHandler = (event) => {
     // Removeremos el formulario si se presionar la tecla ESC
     if (event.keyCode === 27) {
       this.setState({
-        addNewItem: !this.state.addNewItem,
-      })
+        addNewItem: !this.state.addNewItem
+      });
     }
+  }
+
+  editListHandler = (event) => {
+    // Cuando ocurra el evento vamos a mostrar el formulario y ocultar las opciones
+    this.setState({
+      editList: !this.state.editList,
+      listOptions: false
+    });
+  }
+
+  editListOnKeyHandler = (event) => {
+    // Al evento onKeyUp despues de presionar la tecla ESC vamos a salir del formulario
+    if (event.keyCode === 27) {
+      this.setState({
+        editList: !this.state.editList
+      });
+    }
+  }
+
+  editListRemove = () => {
+    // Vamos a remover el formulario cuando hagamos submit
+    this.setState({
+      editList: false
+    });
+  }
+
+  deleteList = (event) => {
+    // Mostramos un mensaje en consola
+    console.log('list deleted');
   }
 
   hideShowList = (event) => {
@@ -55,7 +85,7 @@ class ListContainer extends Component {
      */
     this.setState({
       listOptions: !this.state.listOptions
-    })
+    });
   }
 
   render() {
@@ -75,6 +105,14 @@ class ListContainer extends Component {
               addItem={this.addItem}
               addItemRemove={this.addItemRemove}
               addItemOnKeyHandler={this.addItemOnKeyHandler}
+              addList={this.props.addList}
+              addListRemove={this.props.addListRemove}
+              addListOnKeyHandler={this.props.addListOnKeyHandler}
+              editList={this.state.editList}
+              editListRemove={this.editListRemove}
+              editListHandler={this.editListHandler}
+              editListOnKeyHandler={this.editListOnKeyHandler}
+              deleteList={this.deleteList}
             />
           :
           // De lo contrario rendereamos una lista normal y le pasamos propiedades

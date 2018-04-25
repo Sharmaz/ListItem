@@ -12,7 +12,7 @@ import './list-options.css'
  */
 const ListOptions = (props) => (
   <div className="List-options">
-    <button className="editList-button" onClick={props.editList}>
+    <button className="editList-button" onClick={props.editListHandler}>
       <Edit size={25} color="black"/>
     </button>
     <button className="addItem-button" onClick={props.addItem}>

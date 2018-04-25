@@ -18,6 +18,17 @@ const Lists = (props) => (
         return <ListContainer {...item} key={item._id} />;
       })
     }
+    {
+      // En el caso de que addList sea true, mostramos un ListContainer con formulario
+      props.addList &&
+      <ListContainer
+        name=""
+        items={[]}
+        addList={props.addList}
+        addListRemove={props.addListRemove}
+        addListOnKeyHandler={props.addListOnKeyHandler}
+      />
+    }
   </div>
 );
 

@@ -5,6 +5,8 @@ import ListHeader from './list-header';
 import ListOptions from './list-options';
 import AddItem from './add-item';
 import AddItemFormContainer from '../../forms/containers/add-item-form';
+import AddListFormContainer from '../../forms/containers/add-list-form';
+import EditListFormContainer from '../../forms/containers/edit-list-form';
 
 import './list.css';
 
@@ -14,10 +16,28 @@ import './list.css';
  */
 const DefaultList = (props) => (
   <div className="List List-default">
-    <ListHeader 
-      name={props.name}
-      hideShowListOptions={props.hideShowListOptions}
-    />
+    {
+      // Si addList es true, rendereamos el componente con el formulario de lista
+      props.addList &&
+      <AddListFormContainer
+        addListRemove={props.addListRemove}
+        addListOnKeyHandler={props.addListOnKeyHandler}
+      />
+    }
+    {
+      // Si editList es true mostramos el formulario para editar una lista
+      props.editList?
+      <EditListFormContainer
+        name={props.name}
+        editListOnKeyHandler={props.editListOnKeyHandler}
+        editListRemove={props.editListRemove}
+      />
+      :
+      <ListHeader 
+        name={props.name}
+        hideShowListOptions={props.hideShowListOptions}
+      />
+    }
     {
       /**
        * Si addNewItem es true vamos a mostrar el formulario para agregar item
@@ -34,6 +54,8 @@ const DefaultList = (props) => (
       props.listOptions &&
       <ListOptions
         addItem={props.addItem}
+        editListHandler={props.editListHandler}
+        deleteList={props.deleteList}
       />
     }
     {

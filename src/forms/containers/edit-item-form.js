@@ -14,12 +14,14 @@ class EditItemFormContainer extends Component {
     console.log(this.input.value);
     this.setState({
       inputSubmit: true,
-    })
+    });
   }
+  
   // Hacemos referencia al elemento input
   EditItemRef = (element) => {
     this.input = element;
   }
+
   render() {
     return (
       <div>
