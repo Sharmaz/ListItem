@@ -2,18 +2,26 @@
 import React, { Component } from 'react';
 import EditListForm from '../components/edit-list-form';
 
+import api from '../../api';
+
 class EditListFormContainer extends Component {
-  state = {
-    inputSubmit: false,
-  }
 
   // Manejamos el submit del formulario, imprimimos el valor del input en consola
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
-    this.setState({
-      inputSubmit: true,
-    });
-    console.log(this.input.value);
+
+    // Almacenamos en constantes el valor del input y el id de la lista
+    const listId = this.props.id;
+    const nameList = this.input.value;
+
+    // Para actualizar le pasamos los parametros requeidos (id y valor del input)
+    await api.lists.updateList(listId, nameList);
+
+    // Actualizamos la data
+    await this.props.updateData();
+
+    // Removemos el formulario
+    await this.props.editListRemove();
   }
 
   // Hacemos referencia al elemento input text para obtener su valor
@@ -23,18 +31,12 @@ class EditListFormContainer extends Component {
 
   render() {
     return (
-      <div>
-        {
-          // Se muestra o no el formulario si inputSubmit es true o false
-          !this.state.inputSubmit &&
-          <EditListForm
-            handleSubmit={this.handleSubmit}
-            setRef={this.editListRef}
-            listValue={this.props.name}
-            editListOnKeyHandler={this.props.editListOnKeyHandler}
-          />
-        }
-      </div>
+      <EditListForm
+        handleSubmit={this.handleSubmit}
+        setRef={this.editListRef}
+        listValue={this.props.name}
+        editListOnKeyHandler={this.props.editListOnKeyHandler}
+      />
     );
   }
 }

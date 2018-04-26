@@ -2,6 +2,8 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+require('babel-polyfill');
+
 
 module.exports = (env) => {
   /**
@@ -25,7 +27,7 @@ module.exports = (env) => {
   return {
     // Configuramos el entry point del proyecto
     entry: {
-      "home": path.resolve(__dirname, 'src/entries/home.js')
+      'home': ['babel-polyfill', path.resolve(__dirname, 'src/entries/home.js')]
     },
 
     // Configuramos la salida del proyecto en la carpeta dist para distribución

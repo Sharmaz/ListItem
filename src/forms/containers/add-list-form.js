@@ -2,18 +2,21 @@
 import React, { Component } from 'react';
 import AddListForm from '../components/add-list-form';
 
+import api from '../../api';
+
 class AddListFormContainer extends Component {
-  state = {
-    inputSubmit: false,
-  }
 
   // Manejamos el submit del formulario
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(this.input.value);
-    this.setState({
-      inputSubmit: true,
-    });
+
+    // Creamos la lista con el valor del input como nombre
+    await api.lists.createList(this.input.value);
+
+    // Actualizamos la data
+    await this.props.updateData();
+
+    // Removemos el formulario
     this.props.addListRemove();
   }
 
@@ -21,19 +24,15 @@ class AddListFormContainer extends Component {
   AddListRef = (element) => {
     this.input = element;
   }
-  
+
   render() {
     return (
       <div>
-        {
-          // Rendereamos o no el formulario si inputSubmit es true o false
-          !this.state.inputSubmit &&
-          <AddListForm
-            handleSubmit={this.handleSubmit}
-            setRef={this.AddListRef}
-            addListOnKeyHandler={this.props.addListOnKeyHandler}
-          />
-        }
+        <AddListForm
+          handleSubmit={this.handleSubmit}
+          setRef={this.AddListRef}
+          addListOnKeyHandler={this.props.addListOnKeyHandler}
+        />
       </div>
     )
   }

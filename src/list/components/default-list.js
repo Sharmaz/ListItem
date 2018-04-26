@@ -22,15 +22,21 @@ const DefaultList = (props) => (
       <AddListFormContainer
         addListRemove={props.addListRemove}
         addListOnKeyHandler={props.addListOnKeyHandler}
+        updateData={props.updateData}
       />
     }
     {
-      // Si editList es true mostramos el formulario para editar una lista
+      /**
+       * Si editList es true mostramos el formulario para editar una lista
+       * pasamos por props el id para editar la lista y updateData para actualizar la data
+       */
       props.editList?
       <EditListFormContainer
         name={props.name}
         editListOnKeyHandler={props.editListOnKeyHandler}
         editListRemove={props.editListRemove}
+        id={props.id}
+        updateData={props.updateData}
       />
       :
       <ListHeader 

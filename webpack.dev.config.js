@@ -1,10 +1,11 @@
 // Dependencias
 const path = require('path');
+require('babel-polyfill');
 
 module.exports = {
   // Configuramos el entry point del proyecto
   entry: {
-    "home": path.resolve(__dirname, 'src/entries/home.js')
+    'home': ['babel-polyfill', path.resolve(__dirname, 'src/entries/home.js')]
   },
   
   // Configuramos la salida del proyecto

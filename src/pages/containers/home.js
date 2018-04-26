@@ -3,15 +3,13 @@ import React, { Component } from 'react';
 import HomeLayout from '../components/home-layout';
 import Lists from '../../lists/components/lists';
 import Header from '../../layout/components/header';
-
-// API Hardcodeada de un JSON
-import data from '../../api.json';
+import api from '../../api';
 
 class Home extends Component {
-  // Inicializamos el estado con la data, y addList para mostrar/ocultar formulario
+  // Inicializamos el estado data inicial vacia, y addList para mostrar/ocultar formulario
   state = {
     addList: false,
-    data
+    data: { "lists": [] }
   }
 
   // Vamos a mostrar/ocultar el formulario si addList es true o false
@@ -37,6 +35,27 @@ class Home extends Component {
     }
   }
 
+  // Actualizaremos la data cada vez que se llame a esta función
+  updateData = async (event) => {
+    // Obtenemos la data del API
+    const lists = await api.lists.getList();
+
+    // Actualizamos el estado con la nueva data
+    this.setState({
+      data: lists
+    });
+  }
+
+  async componentDidMount() {
+    // Despues de creado el componente hacemos llamado al API para obtener la data
+    const lists = await api.lists.getList();
+
+    // Actualizamos el estado con la data del API
+    this.setState({
+      data: lists
+    });
+  }
+
   render() {
     // Retornamos el Layout con el Header y las listas pasandole la data como props
     return (
@@ -47,6 +66,7 @@ class Home extends Component {
           lists={this.state.data.lists}
           addListRemove={this.addListRemove}
           addListOnKeyHandler={this.addListOnKeyHandler}
+          updateData={this.updateData}
         />
       </HomeLayout>
     );

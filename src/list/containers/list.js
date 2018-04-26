@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import DefaultList from '../components/default-list';
 import NormalList from '../components/normal-list';
 
+import api from '../../api';
+
 class ListContainer extends Component {
   /**
    * Vamos a utilizar propiedades para mostrar un tipo de lista Default y Normal
@@ -65,9 +67,12 @@ class ListContainer extends Component {
     });
   }
 
-  deleteList = (event) => {
-    // Mostramos un mensaje en consola
-    console.log('list deleted');
+  deleteList = async (event) => {
+    // Eliminamos la lista por medio del API
+    await api.lists.deleteList(this.props.id);
+
+    // Actualizamos la data
+    this.props.updateData();
   }
 
   hideShowList = (event) => {
@@ -113,6 +118,8 @@ class ListContainer extends Component {
               editListHandler={this.editListHandler}
               editListOnKeyHandler={this.editListOnKeyHandler}
               deleteList={this.deleteList}
+              id={this.props.id}
+              updateData={this.props.updateData}
             />
           :
           // De lo contrario rendereamos una lista normal y le pasamos propiedades
