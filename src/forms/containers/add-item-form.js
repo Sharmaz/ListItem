@@ -2,11 +2,24 @@
 import React, { Component } from 'react';
 import AddItemForm from '../components/add-item-form';
 
+import api from '../../api';
+
 class AddItemFormContainer extends Component {
-  // Manejamos el evento summit y dejamos un mensaje en consola
-  handleSubmit = (event) => {
+  // Manejamos el evento summit
+  handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(this.input.value);
+
+    // Almacenamos los valores en constantes que necesitamos para crear un item
+    const listId = this.props.listId;
+    const nameItem = this.input.value;
+
+    // creamos el item pasandole como parametros el id y el valor del input
+    await api.items.createItem(listId, nameItem);
+
+    // Actualizamos la data
+    await this.props.updateData();
+
+    // Removemos el formulario
     this.props.addItemRemove();
   }
 
@@ -14,6 +27,7 @@ class AddItemFormContainer extends Component {
   AddItemRef = (element) => {
     this.input = element;
   }
+
   render() {
     return (
       <AddItemForm

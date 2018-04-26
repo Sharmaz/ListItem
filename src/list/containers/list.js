@@ -128,6 +128,7 @@ class ListContainer extends Component {
               hideShow={this.state.hideShow}
               hideShowList={this.hideShowList}
               items={this.props.items}
+              updateData={this.props.updateData}
             />
         }
       </div>

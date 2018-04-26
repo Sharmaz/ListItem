@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import Item from '../components/item';
 
+import api from '../../api';
+
 class ItemContainer extends Component {
   // Con itemOptions se mostrará o no los botones para editar o eliminar un item
   state = {
@@ -28,7 +30,7 @@ class ItemContainer extends Component {
     // Vamos a remover el formulario cuando hagamos submit
     this.setState({
       showEditItem: false
-    })
+    });
   }
 
   editItemOnKeyHandler = (event) => {
@@ -36,28 +38,32 @@ class ItemContainer extends Component {
     if (event.keyCode === 27) {
       this.setState({
         showEditItem: !this.state.showEditItem,
-      })
+      });
     }
   }
 
-  deleteItem = (event) => {
-    // Cuando se de click en el botón de eliminar mandamos un mensaje por consola
-    console.log('Item Deleted!!')
+  deleteItem = async (event) => {
+    // Eliminamos el item por medio del API
+    await api.items.deleteItem(this.props.id);
+
+    // Actualizamos la data en el estado
+    this.props.updateData();
   }
 
   render() {
     return (
-      <div>
-        <Item
-          name={this.props.name}
-          itemOptions={this.state.itemOptions}
-          showHideItemOptions={this.showHideItemOptions}
-          deleteItem={this.deleteItem}
-          editItem={this.editItem}
-          showEditItem={this.state.showEditItem}
-          editItemOnKeyHandler={this.editItemOnKeyHandler}
-        />
-      </div>
+      <Item
+        name={this.props.name}
+        itemOptions={this.state.itemOptions}
+        showHideItemOptions={this.showHideItemOptions}
+        deleteItem={this.deleteItem}
+        editItem={this.editItem}
+        editItemRemove={this.editItemRemove}
+        showEditItem={this.state.showEditItem}
+        editItemOnKeyHandler={this.editItemOnKeyHandler}
+        id={this.props.id}
+        updateData={this.props.updateData}
+      />
     );
   }
 }

@@ -4,14 +4,21 @@ import ItemContainer from '../../item/containers/item';
 
 import './list.css';
 
-// Creamos un componente funcional List
 const List = (props) => (
   <div className="items">
     {
-      // Recorremos el array items en el elemento 2 del array de listas
       props.items.map((item) => {
-        // Retornamos un componente Item por cada elemento del array
-        return <ItemContainer {...item} key={item._id}/>
+        /**
+         * Retornamos un componente Item por cada elemento del array
+         * Pasamos como props el id del item y la función para actualizar la data
+         */
+        return (
+          <ItemContainer
+          {...item}
+          key={item._id}
+          id={item._id}
+          updateData={props.updateData}/>
+        );
       })
     }
   </div>

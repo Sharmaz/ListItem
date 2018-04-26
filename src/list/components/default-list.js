@@ -48,11 +48,15 @@ const DefaultList = (props) => (
       /**
        * Si addNewItem es true vamos a mostrar el formulario para agregar item
        * le pasamos como props la función para remover el formulario luego del submit
+       * tambien le mandamos por props la función para actualizar la data en el estado
+       * por ultimo le enviamos el id de la lista para agregar el item a esa lista
        */
       props.addNewItem &&
       <AddItemFormContainer 
         addItemRemove={props.addItemRemove}
         addItemOnKeyHandler={props.addItemOnKeyHandler}
+        updateData={props.updateData}
+        listId={props.id}
       />
     }
     {

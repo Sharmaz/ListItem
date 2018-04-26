@@ -12,10 +12,16 @@ import './item.css';
 const Item = (props) => (
   <div className="List-item">
     {
-      // Si showEditItem es true, mostramos el formulario, de lo contrario el texto del item
+      /**
+       * Si showEditItem es true, mostramos el formulario, si es false el nombre del item
+       * Mandamos por props el id del item y la función para actualizar la data del estado
+       */
       props.showEditItem ?
         <EditItemFormContainer
+          id={props.id}
+          editItemRemove={props.editItemRemove}
           editItemOnKeyHandler={props.editItemOnKeyHandler}
+          updateData={props.updateData}
         />
       :
       <h3 onClick={props.showHideItemOptions}>{props.name}</h3>
